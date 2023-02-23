@@ -19,29 +19,27 @@ class Api::MotorcyclesController < ApplicationController
         render json: @motorcycle.errors, status: :unprocessable_entity
       end
     else
-      render json: { error: "Invalid motorcycle parameters" }, status: :bad_request
+      render json: { error: 'Invalid motorcycle parameters' }, status: :bad_request
     end
   end
 
   def update
-    begin
-      if @motorcycle.update(motorcycle_params)
-        render json: @motorcycle
-      else
-        render json: @motorcycle.errors, status: :unprocessable_entity
-      end
-    rescue ActiveRecord::RecordNotFound => e
-      render json: { error: e.message }, status: :not_found
-    rescue ActiveRecord::RecordInvalid => e
-      render json: { error: e.message }, status: :unprocessable_entity
-    rescue StandardError => e
-      render json: { error: e.message }, status: :internal_server_error
+    if @motorcycle.update(motorcycle_params)
+      render json: @motorcycle
+    else
+      render json: @motorcycle.errors, status: :unprocessable_entity
     end
+  rescue ActiveRecord::RecordNotFound => e
+    render json: { error: e.message }, status: :not_found
+  rescue ActiveRecord::RecordInvalid => e
+    render json: { error: e.message }, status: :unprocessable_entity
+  rescue StandardError => e
+    render json: { error: e.message }, status: :internal_server_error
   end
 
   def destroy
     if @motorcycle.nil?
-      render json: { error: "Motorcycle not found" }, status: :not_found
+      render json: { error: 'Motorcycle not found' }, status: :not_found
     else
       @motorcycle.destroy
       head :no_content
