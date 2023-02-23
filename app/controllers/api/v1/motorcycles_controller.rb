@@ -46,7 +46,7 @@ class Api::V1::MotorcyclesController < ApplicationController
 
   def set_motorcycle
     @motorcycle = Motorcycle.find(params[:id])
-  rescue ActiveRecord::RecordNotFound => e
+  rescue ActiveRecord::RecordNotFound
     render json: { error: 'Motorcycle not found' }, status: :not_found
   end
 
