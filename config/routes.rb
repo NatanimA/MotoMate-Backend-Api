@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       post "/register", to:"users#register"
       post "/reserve", to:"reservations#reserve"
       delete "/reserve/:id", to:"reservations#checkout"
+      resources :motorcycles
     end
   end
 end
