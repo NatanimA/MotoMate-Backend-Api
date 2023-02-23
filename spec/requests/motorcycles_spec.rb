@@ -2,23 +2,23 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::MotorcyclesController, type: :request do
   before do
-    @user = User.create(name: "John Doe", user_name: "johndoe")
+    @user = User.create(name: 'John Doe', user_name: 'johndoe')
   end
   let(:invalid_params) { { motorcycle: attributes_for(:motorcycle, name: nil) } }
-  let(:valid_params) { 
-    { 
+  let(:valid_params) do
+    {
       motorcycle: {
-        name: "Harley Davidson",
-        img_url: "http://example.com/image.jpg",
-        price: 10000,
-        description: "A very cool motorcycle",
+        name: 'Harley Davidson',
+        img_url: 'http://example.com/image.jpg',
+        price: 10_000,
+        description: 'A very cool motorcycle',
         model_year: 2022,
-        engine: "V-twin",
-        fuel_type: "gasoline",
+        engine: 'V-twin',
+        fuel_type: 'gasoline',
         user_id: @user.id
-      } 
-    } 
-  }
+      }
+    }
+  end
 
   describe 'GET /api/v1/motorcycles' do
     before { get '/api/v1/motorcycles' }
