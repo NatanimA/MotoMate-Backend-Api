@@ -1,5 +1,5 @@
 class Api::MotorcyclesController < ApplicationController
-  before_action :set_motorcycle, only: [:show, :update, :destroy]
+  before_action :set_motorcycle, only: %i[show update destroy]
 
   def index
     @motorcycles = Motorcycle.all
@@ -34,11 +34,12 @@ class Api::MotorcyclesController < ApplicationController
   end
 
   private
-    def set_motorcycle
-      @motorcycle = Motorcycle.find(params[:id])
-    end
 
-    def motorcycle_params
-      params.require(:motorcycle).permit(:name, :img_url, :price, :description, :model_year, :engine, :fuel_type)
-    end
+  def set_motorcycle
+    @motorcycle = Motorcycle.find(params[:id])
+  end
+
+  def motorcycle_params
+    params.require(:motorcycle).permit(:name, :img_url, :price, :description, :model_year, :engine, :fuel_type)
+  end
 end
