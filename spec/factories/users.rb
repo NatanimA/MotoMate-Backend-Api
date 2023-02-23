@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    name { Faker::Name.name[0, 20] }
+    sequence(:name) { |n| "#{Faker::Name.name[0, 20]}#{n}" }
     user_name { Faker::Internet.username }
     created_at { Time.current }
     updated_at { Time.current }
