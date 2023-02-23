@@ -16,17 +16,17 @@ RSpec.describe Reservation, type: :model do
 
   describe 'validations' do
     it 'validates presence of city' do
-      reservation = build(:reservation, city: nil, user: user, motorcycle: motorcycle)
+      reservation = build(:reservation, city: nil, user:, motorcycle:)
       expect(reservation).not_to be_valid
     end
 
     it 'validates presence of start_date' do
-      reservation = build(:reservation, start_date: nil, user: user, motorcycle: motorcycle)
+      reservation = build(:reservation, start_date: nil, user:, motorcycle:)
       expect(reservation).not_to be_valid
     end
 
     it 'validates presence of end_date' do
-      reservation = build(:reservation, end_date: nil, user: user, motorcycle: motorcycle)
+      reservation = build(:reservation, end_date: nil, user:, motorcycle:)
       expect(reservation).not_to be_valid
     end
   end
