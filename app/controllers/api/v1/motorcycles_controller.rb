@@ -1,4 +1,4 @@
-class Api::MotorcyclesController < ApplicationController
+class Api::V1::MotorcyclesController < ApplicationController
   before_action :set_motorcycle, only: %i[show update destroy]
 
   def index
@@ -12,14 +12,10 @@ class Api::MotorcyclesController < ApplicationController
 
   def create
     @motorcycle = Motorcycle.new(motorcycle_params)
-    if @motorcycle.valid?
-      if @motorcycle.save
-        render json: @motorcycle, status: :created, location: @motorcycle
-      else
-        render json: @motorcycle.errors, status: :unprocessable_entity
-      end
+    if @motorcycle.save
+      render json: @motorcycle, status: :created, location: api_v1_motorcycle_url(@motorcycle)
     else
-      render json: { error: 'Invalid motorcycle parameters' }, status: :bad_request
+      render json: @motorcycle.errors, status: :unprocessable_entity
     end
   end
 
@@ -50,9 +46,12 @@ class Api::MotorcyclesController < ApplicationController
 
   def set_motorcycle
     @motorcycle = Motorcycle.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Motorcycle not found' }, status: :not_found
   end
 
   def motorcycle_params
-    params.require(:motorcycle).permit(:name, :img_url, :price, :description, :model_year, :engine, :fuel_type)
+    params.require(:motorcycle).permit(:name, :img_url, :price, :description, :model_year, :engine, :fuel_type,
+                                       :user_id)
   end
 end
