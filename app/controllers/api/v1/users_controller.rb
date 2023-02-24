@@ -27,12 +27,12 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def reservations
-      user = User.find_by(id:params[:id])
-      if user.nil?
-        render status: :not_found,json:{message:"User could not be found",status: :not_found}
-      else
-        reservations = Reservation.where(user_id:params[:id])
-        render status: :ok,json:{message:"Reservation successfully found",data:reservations,status: :ok}
-      end
+    user = User.find_by(id: params[:id])
+    if user.nil?
+      render status: :not_found, json: { message: 'User could not be found', status: :not_found }
+    else
+      reservations = Reservation.where(user_id: params[:id])
+      render status: :ok, json: { message: 'Reservation successfully found', data: reservations, status: :ok }
+    end
   end
 end
