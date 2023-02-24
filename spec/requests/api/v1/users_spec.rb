@@ -4,10 +4,8 @@ require 'rails_helper'
 RSpec.describe 'api/v1/users', type: :request do
   let!(:user) { create(:user, user_name: 'testuser') }
   path '/api/v1/login' do
-
     post('login user') do
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -20,10 +18,8 @@ RSpec.describe 'api/v1/users', type: :request do
   end
 
   path '/api/v1/register' do
-
     post('register user') do
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -41,7 +37,7 @@ RSpec.describe 'api/v1/users', type: :request do
 
     get('reservations user') do
       response(200, 'successful') do
-        let(:id) { user.id}
+        let(:id) { user.id }
 
         after do |example|
           example.metadata[:response][:content] = {
