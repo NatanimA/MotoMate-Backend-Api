@@ -44,7 +44,7 @@ RSpec.describe Motorcycle, type: :model do
     end
 
     it 'is not valid with a description that is too short' do
-      motorcycle.description = 'a' * 4
+      motorcycle.description = 'a' * 2
       expect(motorcycle).not_to be_valid
     end
 

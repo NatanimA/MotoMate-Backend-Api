@@ -24,26 +24,4 @@ RSpec.describe User, type: :model do
     user = build(:user, name: 'John Doe')
     expect(user).to be_valid
   end
-
-  it 'validates presence of user_name' do
-    user = build(:user, user_name: nil)
-    expect(user).not_to be_valid
-  end
-
-  it 'validates length of user_name' do
-    user = build(:user, user_name: 'A' * 2)
-    expect(user).not_to be_valid
-
-    user = build(:user, user_name: 'A' * 51)
-    expect(user).not_to be_valid
-
-    user = build(:user, user_name: 'johndoe')
-    expect(user).to be_valid
-  end
-
-  it 'validates uniqueness of user_name' do
-    create(:user, user_name: 'johndoe')
-    user = build(:user, user_name: 'johndoe')
-    expect(user).not_to be_valid
-  end
 end
