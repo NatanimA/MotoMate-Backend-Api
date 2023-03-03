@@ -22,10 +22,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_084706) do
     t.decimal "price"
     t.string "engine"
     t.string "fuel_type"
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_motorcycles_on_user_id"
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -48,7 +46,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_084706) do
     t.index ["user_name"], name: "index_users_on_user_name", unique: true
   end
 
-  add_foreign_key "motorcycles", "users"
   add_foreign_key "reservations", "motorcycles"
   add_foreign_key "reservations", "users"
 end

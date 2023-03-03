@@ -1,13 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-
-user1 = User.create(name: "John Smith", user_name: "jsmith")
-
-motorcycle1 = user1.motorcycles.create(name: "Harley Davidson Fat Boy", description: "A classic cruiser motorcycle", img_url: "https://example.com/harley.jpg", model_year: "2022", price: 19999.99, engine: "1868cc Milwaukee-Eight® 114", fuel_type: "Gasoline")
-
-reservation1 = user1.reservations.create(city: "Los Angeles", start_date: Date.today, end_date: Date.today + 7.days, motorcycle: motorcycle1)
+Motorcycle.create(name: "Harley Davidson Fat Boy", description: "A classic cruiser motorcycle", img_url: "https://d2bywgumb0o70j.cloudfront.net/2019/10/02/46fb295cbc49bf19e5acc501c1c84325_aa1e308a6f2930f8.png", model_year: "2022", price: 19999.99, engine: "1868cc Milwaukee-Eight® 114", fuel_type: "Gasoline")
+Motorcycle.create(name: "Ducati Panigale V4 R", description: "A high-performance sportbike", img_url: "https://korlas.com.tr/wp-content/uploads/2020/12/Panigale-V4-R-MY19-Red-01-Model-Preview-1050x650-1.png", model_year: "2021", price: 39995.0, engine: "998cc Desmosedici Stradale R", fuel_type: "Gasoline")
+Motorcycle.create(name: "Indian Scout Bobber", description: "A sleek cruiser motorcycle", img_url: "https://www.motorcular.com/files/1000x1000_5b82a2e081379_427526345.jpg", model_year: "2022", price: 11999.0, engine: "100ci V-twin", fuel_type: "Gasoline")
+Motorcycle.create(name: "BMW S 1000 RR", description: "A powerful sportbike", img_url: "https://www.motosikletsitesi.com/wp-content/uploads/2017/06/2017-BMW-S1000RR1-small.jpg", model_year: "2022", price: 17995.0, engine: "999cc inline-four", fuel_type: "Gasoline")
+Motorcycle.create(name: "Yamaha YZF-R6", description: "A popular sportbike", img_url: "https://cdn.otopark.com/wp-content/uploads/2016/10/2017_Yamaha_YZF-R6_28.jpg", model_year: "2022", price: 13199.0, engine: "599cc inline-four", fuel_type: "Gasoline") 

@@ -26,7 +26,7 @@ class Api::V1::ReservationsController < ApplicationController
       # If Available destroy
       render status: 200, json: { message: 'Reservation have been removed', status: 200 }
     else
-      render status: 500, jsom: { message: 'Something went wrong please try again later.', status: 500 }
+      render status: 500, json: { message: 'Something went wrong please try again later.', status: 500 }
     end
   end
 end
