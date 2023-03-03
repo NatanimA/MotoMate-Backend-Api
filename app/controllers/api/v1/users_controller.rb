@@ -12,19 +12,21 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def register
-  user = User.new(name: params[:name])
-  # Check if body is valid
-  if user.valid?
-    # If valid save the new User
-    if user.save
-      render status: 201, json: { message: 'User is registered successfuly.', id: user.id, name: user.name, status: 201 }
+    user = User.new(name: params[:name])
+    # Check if body is valid
+    if user.valid?
+      # If valid save the new User
+      if user.save
+        render status: 201,
+               json: { message: 'User is registered successfuly.', id: user.id, name: user.name,
+                       status: 201 }
+      else
+        render status: 500, json: { message: 'Something went wrong please try again later.', status: 500 }
+      end
     else
-      render status: 500, json: { message: 'Something went wrong please try again later.', status: 500 }
+      render status: 400, json: { message: 'Bad request.', status: 400 }
     end
-  else
-    render status: 400, json: { message: 'Bad request.', status: 400 }
   end
-end
 
   def reservations
     user = User.find_by(id: params[:id])

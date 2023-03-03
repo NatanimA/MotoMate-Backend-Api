@@ -14,7 +14,7 @@ RSpec.describe Api::V1::MotorcyclesController, type: :request do
         description: 'A very cool motorcycle',
         model_year: 2022,
         engine: 'V-twin',
-        fuel_type: 'gasoline',
+        fuel_type: 'gasoline'
       }
     }
   end
