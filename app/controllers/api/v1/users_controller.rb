@@ -13,14 +13,14 @@ class Api::V1::UsersController < ApplicationController
 
   def register
     user = User.find_by(name: params[:name])
-    
+
     if user.nil?
       user = User.new(name: params[:name])
-      
+
       if user.save
         render status: 201,
-              json: { message: 'User is registered successfuly.', id: user.id, name: user.name,
-                      status: 201 }
+               json: { message: 'User is registered successfuly.', id: user.id, name: user.name,
+                       status: 201 }
       else
         render status: 500, json: { message: 'Something went wrong please try again later.', status: 500 }
       end
@@ -29,7 +29,6 @@ class Api::V1::UsersController < ApplicationController
                                   status: 200 }
     end
   end
-
 
   def reservations
     user = User.find_by(id: params[:id])
