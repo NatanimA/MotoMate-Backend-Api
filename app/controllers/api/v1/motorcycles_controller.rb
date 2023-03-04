@@ -37,6 +37,7 @@ class Api::V1::MotorcyclesController < ApplicationController
     if @motorcycle.nil?
       render json: { error: 'Motorcycle not found' }, status: :not_found
     else
+      @motorcycle.reservations.destroy_all
       @motorcycle.destroy
       head :no_content
     end
@@ -51,7 +52,6 @@ class Api::V1::MotorcyclesController < ApplicationController
   end
 
   def motorcycle_params
-    params.require(:motorcycle).permit(:name, :img_url, :price, :description, :model_year, :engine, :fuel_type,
-                                       :user_id)
+    params.require(:motorcycle).permit(:name, :img_url, :price, :description, :model_year, :engine, :fuel_type)
   end
 end

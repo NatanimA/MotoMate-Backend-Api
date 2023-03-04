@@ -7,6 +7,5 @@ FactoryBot.define do
     model_year { Faker::Vehicle.year }
     engine { Faker::Vehicle.engine }
     fuel_type { Faker::Vehicle.fuel_type }
-    user_id { create(:user).id }
   end
 end

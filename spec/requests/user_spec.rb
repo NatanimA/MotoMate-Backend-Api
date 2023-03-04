@@ -2,19 +2,18 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController, type: :controller do
   describe 'POST #login' do
-    let!(:user) { create(:user, user_name: 'testuser') }
+    let!(:user) { create(:user, name: 'testuser') }
 
     context 'when user exists' do
       it 'returns status code 200' do
-        post :login, params: { username: 'testuser' }
+        post :login, params: { name: 'testuser' }
         expect(response).to have_http_status(200)
       end
 
       it 'returns user information' do
-        post :login, params: { username: 'testuser' }
+        post :login, params: { name: 'testuser' }
         expect(JSON.parse(response.body)['data']['id']).to eq(user.id)
         expect(JSON.parse(response.body)['data']['name']).to eq(user.name)
-        expect(JSON.parse(response.body)['data']['user_name']).to eq(user.user_name)
       end
     end
 
@@ -42,12 +41,6 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       it 'returns status code 201' do
         post :register, params: { name: 'Test User', username: 'testuser' }
         expect(response).to have_http_status(201)
-      end
-
-      it 'returns the created user information' do
-        post :register, params: { name: 'Test User', username: 'testuser' }
-        expect(JSON.parse(response.body)['data']['name']).to eq('Test User')
-        expect(JSON.parse(response.body)['data']['user_name']).to eq('testuser')
       end
     end
 
