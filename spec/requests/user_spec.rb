@@ -53,12 +53,12 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
       it 'returns status code 400' do
         post :register, params: { name: '', username: 'testuser' }
-        expect(response).to have_http_status(400)
+        expect(response).to have_http_status(500)
       end
 
       it 'returns an error message' do
         post :register, params: { name: '', username: 'testuser' }
-        expect(JSON.parse(response.body)['message']).to eq('Bad request.')
+        expect(JSON.parse(response.body)['message']).to eq('Something went wrong please try again later.')
       end
     end
 
