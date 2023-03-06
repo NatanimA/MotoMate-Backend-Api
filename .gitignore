@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# .gitignore
+node_modules/
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -29,3 +32,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore operating system files
+.DS_Store
+
+# Ignore vscode files
+.vscode

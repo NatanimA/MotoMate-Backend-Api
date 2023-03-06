@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: MotoMate_Backend_Api_production
-  username: MotoMate_Backend_Api
-  password: <%= ENV["MOTOMATE_BACKEND_API_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
