@@ -24,9 +24,6 @@ default: &default
 development:
   <<: *default
   database: MotoMate_Backend_Api_development
-  username: postgres
-  password: 12345678
-  port: 5433
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -61,9 +58,7 @@ development:
 test:
   <<: *default
   database: MotoMate_Backend_Api_test
-  username: postgres
-  password: 12345678
-  port: 5433
+
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
