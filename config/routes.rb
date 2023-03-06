@@ -12,7 +12,6 @@ Rails.application.routes.draw do
       post "/reservations/user/:id", to: "reservations#reserve"
       delete "/reservations/user/:id", to: "reservations#checkout"
       resources :motorcycles
-      resources :users
     end
   end
 end
