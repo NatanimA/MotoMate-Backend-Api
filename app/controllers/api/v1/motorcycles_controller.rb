@@ -13,21 +13,18 @@ class Api::V1::MotorcyclesController < ApplicationController
   def create
     @motorcycle = Motorcycle.new(motorcycle_params)
 
-    if params[:image]
-      @motorcycle.image.attach(params[:image])
-    end
+    @motorcycle.image.attach(params[:image]) if params[:image]
 
     if @motorcycle.save
-      render json: @motorcycle.to_json(methods: :image_url), status: :created, location: api_v1_motorcycle_url(@motorcycle)
+      render json: @motorcycle.to_json(methods: :image_url), status: :created,
+             location: api_v1_motorcycle_url(@motorcycle)
     else
       render json: @motorcycle.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    if params[:image]
-      @motorcycle.image.attach(params[:image])
-    end
+    @motorcycle.image.attach(params[:image]) if params[:image]
 
     if @motorcycle.update(motorcycle_params)
       render json: @motorcycle.to_json(methods: :image_url)
