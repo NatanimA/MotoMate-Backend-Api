@@ -3,25 +3,31 @@ class Api::V1::MotorcyclesController < ApplicationController
 
   def index
     @motorcycles = Motorcycle.all
-    render json: @motorcycles
+    render json: @motorcycles.to_json(methods: :image_url)
   end
 
   def show
-    render json: @motorcycle
+    render json: @motorcycle.to_json(methods: :image_url)
   end
 
   def create
     @motorcycle = Motorcycle.new(motorcycle_params)
+
+    @motorcycle.image.attach(params[:image]) if params[:image]
+
     if @motorcycle.save
-      render json: @motorcycle, status: :created, location: api_v1_motorcycle_url(@motorcycle)
+      render json: @motorcycle.to_json(methods: :image_url), status: :created,
+             location: api_v1_motorcycle_url(@motorcycle)
     else
       render json: @motorcycle.errors, status: :unprocessable_entity
     end
   end
 
   def update
+    @motorcycle.image.attach(params[:image]) if params[:image]
+
     if @motorcycle.update(motorcycle_params)
-      render json: @motorcycle
+      render json: @motorcycle.to_json(methods: :image_url)
     else
       render json: @motorcycle.errors, status: :unprocessable_entity
     end
@@ -52,6 +58,6 @@ class Api::V1::MotorcyclesController < ApplicationController
   end
 
   def motorcycle_params
-    params.require(:motorcycle).permit(:name, :img_url, :price, :description, :model_year, :engine, :fuel_type)
+    params.require(:motorcycle).permit(:name, :price, :description, :model_year, :engine, :fuel_type)
   end
 end
