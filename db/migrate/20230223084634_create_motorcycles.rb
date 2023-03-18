@@ -3,6 +3,7 @@ class CreateMotorcycles < ActiveRecord::Migration[7.0]
     create_table :motorcycles do |t|
       t.string :name
       t.text :description
+      t.string :img_url
       t.string :model_year
       t.decimal :price
       t.string :engine
